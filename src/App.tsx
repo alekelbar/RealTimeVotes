@@ -9,8 +9,6 @@ function App() {
 
   const { list, socket } = useAppSelector(state => state.socketsState);
 
-  console.log(list)
-
   const dispatch = useAppDispatch();
 
   useEffect(() => {

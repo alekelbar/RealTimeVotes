@@ -2,7 +2,8 @@ import React, { ChangeEvent, FormEvent, MouseEvent, useEffect, useState } from '
 import { AppElement } from '../../types/index';
 import { useAppSelector } from '../../redux/hooks/index';
 
-type Props = Required<AppElement>
+type AppProps = Required<AppElement>
+type Props = AppProps;
 
 export const ElementItem: React.FC<Props> = ({ name, votes, id }) => {
 
@@ -25,8 +26,11 @@ export const ElementItem: React.FC<Props> = ({ name, votes, id }) => {
   }
 
   const handlevote = (e: MouseEvent) => {
-    console.log('El evento del mouse se activo')
     socket.emit('vote', { id })
+  }
+
+  const handleRemove = (e: MouseEvent) => {
+    socket.emit('remove', { id })
   }
 
   return (
@@ -46,7 +50,7 @@ export const ElementItem: React.FC<Props> = ({ name, votes, id }) => {
         <button className='btn-primary text-center mx-auto' onClick={handlevote}>
           vote
         </button>
-        <button className='mx-auto btn-danger text-center'>
+        <button className='mx-auto btn-danger text-center' onClick={handleRemove}>
           remove
         </button>
       </div>
