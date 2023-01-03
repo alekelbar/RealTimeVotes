@@ -16,6 +16,8 @@ it's a real-time app to vote.
 
 ## Run Locally
 
+> First, you need to run the back-end service: [RealTimeVotes-backend](https://github.com/alekelbar/RealTimeVotes-backend.git)
+
 Clone the project
 
 ```bash
