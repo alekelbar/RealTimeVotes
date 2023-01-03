@@ -1,34 +1,11 @@
-import react, { useEffect, useState } from 'react';
 import { ElementItem } from "./components/ElementItem";
 import { Header } from "./components/Header";
-import { useAppDispatch, useAppSelector } from './redux/hooks/index';
-import { ServiceStatus, setList } from "./redux/slices";
+import { useSocket } from './hooks/useSocket';
 
 
-function App() {
+export const App = () => {
 
-  const { list, socket } = useAppSelector(state => state.socketsState);
-
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    socket.on('band-list', (data) => {
-      dispatch(setList(data))
-    })
-  }, [socket]);
-
-  useEffect(() => {
-    socket.on('connect', () => {
-      dispatch(ServiceStatus(socket.connected));
-    })
-
-  }, [socket]);
-
-  useEffect(() => {
-    socket.on('disconnect', () => {
-      dispatch(ServiceStatus(socket.connected));
-    })
-  }, [socket]);
+  const { list } = useSocket();
 
   return (
     <div className="container mt-1">
@@ -39,7 +16,5 @@ function App() {
         ))}
       </div>
     </div>
-  )
-}
-
-export default App
+  );
+};
