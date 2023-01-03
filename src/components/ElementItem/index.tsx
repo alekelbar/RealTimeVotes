@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, FormEvent, MouseEvent, useEffect, useState } from 'react'
 import { AppElement } from '../../types/index';
 import { useAppSelector } from '../../redux/hooks/index';
 
@@ -24,6 +24,11 @@ export const ElementItem: React.FC<Props> = ({ name, votes, id }) => {
     socket.emit('re-name', { name: newValue, id })
   }
 
+  const handlevote = (e: MouseEvent) => {
+    console.log('El evento del mouse se activo')
+    socket.emit('vote', { id })
+  }
+
   return (
     <div className='container p-3 max-w-md'>
       <div className='grid grid-cols-1 gap-3' >
@@ -38,7 +43,7 @@ export const ElementItem: React.FC<Props> = ({ name, votes, id }) => {
           />
         </form>
         <h1 className="mx-auto capitalize mt-4 text-xl">{votes} vote(s)</h1>
-        <button className='btn-primary text-center mx-auto'>
+        <button className='btn-primary text-center mx-auto' onClick={handlevote}>
           vote
         </button>
         <button className='mx-auto btn-danger text-center'>

@@ -8,8 +8,8 @@ import { ServiceStatus, setList } from "./redux/slices";
 function App() {
 
   const { list, socket } = useAppSelector(state => state.socketsState);
-  console.log(list);
-  const [data, setData] = useState(list);
+
+  console.log(list)
 
   const dispatch = useAppDispatch();
 
