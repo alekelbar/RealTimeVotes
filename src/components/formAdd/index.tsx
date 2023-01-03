@@ -1,28 +1,28 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useAppSelector } from '../../redux/hooks/index';
 
 const formInitialState = {
   name: ''
-}
+};
 
 export const FormAdd = () => {
 
   const { socket } = useAppSelector(state => state.socketsState);
-  const [inputForm, setInputForm] = useState(formInitialState)
+  const [inputForm, setInputForm] = useState(formInitialState);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
     const { name } = inputForm;
-    if (name.length < 3) return;
+    if (name.length < 2) return;
 
-    socket.emit('create', { name })
-    setInputForm(formInitialState)
-  }
+    socket.emit('create', { name });
+    setInputForm(formInitialState);
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputForm({ ...inputForm, [e.target.name]: e.target.value })
-  }
+    setInputForm({ ...inputForm, [e.target.name]: e.target.value });
+  };
 
   return (
     <div className='container flex flex-col'>
@@ -39,5 +39,5 @@ export const FormAdd = () => {
         />
       </form>
     </div>
-  )
-}
+  );
+};
