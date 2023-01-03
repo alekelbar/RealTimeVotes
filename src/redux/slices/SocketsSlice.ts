@@ -1,7 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { socket } from "../../sockets";
 import { Socket } from "socket.io-client";
 import { AppList } from "../../types/index";
+
+import io from "socket.io-client";
+
+const socket = io("http://localhost:8081/", {
+  transports: ["websocket"],
+});
 
 interface SocketState {
   socket: Socket;
